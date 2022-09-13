@@ -1,0 +1,67 @@
+<app-print-page id="mytodosItemsId"></app-print-page>
+<div class="container">
+  
+      <div class="p-grid">
+        <div class="p-col-12">
+          <h1>Ordem de Servico</h1>
+        </div>
+        <div class="p-col-12 p-md-9 p-fluid">
+            <label>Assunto</label>
+            <input pInputText type="text" name="assunto"
+            [(ngModel)]="ordemdeservico.assunto"
+            #assunto="ngModel" required minlength="12" disabled>
+        </div>
+
+        <div class="p-col-6 p-md-3 p-fluid">
+          
+          <label>Data da Criacao</label>
+          <p-calendar name="criacao" dateFormat="dd/mm/yy"
+          [inline]="false" [readonlyInput]="true" [showIcon]="false"
+          [(ngModel)]="ordemdeservico.dataCriacao" name="dataCriacao"
+          #dataCriacao="ngModel" disabled></p-calendar>
+
+        </div>
+
+        <div class="p-col-12 p-md-9 p-fluid">
+          <label>Descrição</label>
+          <textarea pInputText name="descricao"
+            [(ngModel)]="ordemdeservico.descricao"
+            #descricao="ngModel" required minlength="5" disabled>
+        </textarea>
+        </div>
+        <div class="p-col-12 p-md-6 p-fluid">
+            <label>Tecnico</label>
+            <input pInputText name="tecnico"
+            [(ngModel)]="ordemdeservico.tecnico.nome" disabled>
+        </div>
+
+        <div class="p-col-12 p-md-6 p-fluid">
+            <label>Status</label>
+          <input pInputText name="statusos"
+            [(ngModel)]="ordemdeservico.statusos.nome" disabled>
+        </div>
+
+        <div class="p-col-12 p-md-6 p-fluid">
+          <label>Escola</label>
+          <input pInputText name="escola"
+           [(ngModel)]="ordemdeservico.escola.nome" disabled>
+        </div>
+
+        <div class="p-col-12 p-fluid">
+          <label>Observação</label>
+          <textarea pInputText rows="3" 
+            name="observacao" [(ngModel)]="ordemdeservico.observacao"
+            disabled ></textarea>
+        </div>
+
+        <div class="p-col-12" style="font-weight: bold;">
+
+            <button pButton icon="pi pi-print" pTooltip="Imprimir" tooltipPosition="top"
+            class="print"  printSectionId="mytodosItemsId"
+             ngxPrint [routerLink]="['/ordensdeservico/print', ordemdeservico.codigo]" 
+             onclick="history.go(-1)"></button>
+
+          <a routerLink="/ordensdeservico">Voltar para a pesquisa</a>
+        </div>
+      </div>
+  </div>

@@ -1,0 +1,125 @@
+<div class="container">
+    
+  <form autocomplete="off" (ngSubmit)="pesquisar()">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <h1>Ordens de Serviço</h1>
+      </div>
+
+      <div class="p-col-12 p-fluid" style="margin-bottom: 10px;">
+        <label>Escola</label>
+        <input pInputText type="text" name="escola" [(ngModel)]="filtro.escola">
+      </div>
+  
+      <div class="p-col-12" style="margin-bottom: 10px;">
+        <label style="display: block;">Data Criaçao</label>
+        <p-calendar  dateFormat="dd/mm/yy" [inputStyle]="{ width: '120px' }" name="dataCriacao" 
+        [(ngModel)]="filtro.dataCriacao"></p-calendar>
+      </div>
+  
+      <div class="p-col-12" style="margin-bottom: 10px;">
+        <button pButton type="submit" label="Pesquisar" onclick="sortTable()"></button>
+      </div>
+    </div>
+  </form>
+    <div class="p-grid" >
+      <div class="p-col-12">
+        <p-table [value]="ordensdeservico" id="myTable"
+            [paginator]="true" [rows]="5" [rows]="filtro.itensPorPagina"
+            [responsive]="true" [totalRecords]="totalRegistros"
+            (onLazyLoad)="aoMudarPagina($event)"
+            #tabela>  
+          <ng-template pTemplate="header">
+            <tr>
+                <th class="col-status-header">Status</th>
+                <th>Escola</th>
+                <th>Assunto</th>
+                <th class="col-data-header">Data Criaçao</th>
+                <th class="col-acoes-header"></th>
+            </tr>
+          </ng-template>
+          
+          <ng-template pTemplate="body" let-ordemdeservico>
+           <tr>
+              <td class="col-status" sortable="true" [style.color]="ordemdeservico.statusos=== 'Nova'? 'dodgerblue' : 'orange'">
+              <span class="p-column-title" >Status: </span>
+              {{ordemdeservico.statusos}}
+              </td>
+              <td>
+              <span class="p-column-title">Escola: </span>
+              {{ordemdeservico.escola}}
+              </td>
+              <td>
+              <span class="p-column-title">Assunto: </span>
+              {{ordemdeservico.assunto}}
+              </td>
+              <td>
+                <span class="p-column-title">Data de Criacao: </span>
+              {{ordemdeservico.dataCriacao | date:'dd/MM/y' }}
+              </td>
+              <td class="col-acoes">
+                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/ordensdeservico', ordemdeservico.codigo]"></a>
+                <button class="detail" pButton icon="pi pi-eye" pTooltip="Detalhes" tooltipPosition="top"
+                [routerLink]="['/ordensdeservico/detalhes', ordemdeservico.codigo]"></button>
+                <button class="excluir" pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                  (click)="confirmarExclusao(ordemdeservico)"
+                  *ngIf="temPermissao('ROLE_REMOVER_ORDEMSERVICO')"></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="6">
+                Nenhuma ordem de serviço encontrada
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  
+    <div class="p-col-12" style="margin-top: 15px;">
+        <a pButton label="Nova Ordem de Serviço" 
+        class="p-button-success" style="font-weight: bold;"
+        routerLink="/ordensdeservico/nova"></a>
+    </div>
+    
+    
+  </div>
+  <script>
+    function sortTable() {
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("myTable");
+      switching = true;
+      /*Make a loop that will continue until
+      no switching has been done:*/
+      while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+          x = rows[i].getElementsByTagName("TD")[0];
+          y = rows[i + 1].getElementsByTagName("TD")[0];
+          //check if the two rows should switch place:
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+        }
+        if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+    }
+    </script>

@@ -1,0 +1,68 @@
+<div class="container">
+
+    <div class="p-grid">
+      <form  autocomplete="off" (ngSubmit)="pesquisar()">  
+        <div class="p-col-12">
+          <h1>Escolas</h1>
+        </div>
+
+        <div class="p-col-12 p-fluid">
+          <label>Nome</label>
+          <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
+        </div>
+    
+        <div class="p-col-12">
+          <button pButton type="submit" label="Pesquisar"></button>
+        </div>
+      </form>
+    </div>
+  
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table [value]="escolas" [responsive]="true"
+          [paginator]="true" [rows]="filtro.itensPorPagina"
+          [lazy]="true" [totalRecords]="totalRegistros"
+          (onLazyLoad)="aoMudarPagina($event)"
+          #tabela>
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th class="col-acoes-header"></th>
+            </tr>
+          </ng-template>
+  
+          <ng-template pTemplate="body" let-escola>
+            <tr>
+              <td>
+                <span class="p-column-title">Nome</span>
+                {{ escola.nome }}
+              </td>
+              <td>
+                <span class="p-column-title">Email</span>
+                {{ escola.email }}
+              </td>
+              <td class="col-acoes">
+                <span class="p-column-title"></span>
+                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                <button pButton class="excluir" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                  (click)="confirmarExclusao(escola)"></button>
+              </td>
+            </tr>
+          </ng-template>
+  
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="5">
+                Nenhuma Escola encontrada
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="p-col-12">
+        <a routerLink="/escolas/nova" pButton label="Nova Escola"></a>
+      </div>
+    </div>
+  
+  </div>

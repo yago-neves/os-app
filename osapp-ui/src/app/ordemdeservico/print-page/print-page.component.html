@@ -1,0 +1,97 @@
+
+<div >
+    <div class="header" style="width: 100%;
+            overflow: auto;
+            margin-bottom: 20px;
+            margin: auto;
+            overflow: auto;"
+            >
+       <img style=" margin-left: 90px;
+       padding: 5px;
+       float: left;"
+       src="assets\img\ItumbiaraLogo.png" width="100px" height="80px">
+
+        <div class="text" style="
+        text-align: center;
+        float: left;
+        text-decoration: none;">
+            <h2>Prefeitura Municipal de Itumbiara</h2>
+            <h2>Secretaria Municipal de Educação</h2>
+            <h3>Departamento de Informatica</h3>
+        </div>
+
+        <img style="  padding: 5px;
+        float: left;" 
+        src="assets\img\SmeLogo.png" width="100px" height="80px">
+
+    </div>
+
+    <div class="corpo" style="width: 60%;
+    margin: auto;
+    text-align: center;">
+        <h2>Ordem de Serviço</h2>
+        <table style="width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;"
+        >
+            <tr>
+                <td style="border: 1px solid black;
+                border-collapse: collapse;"><p>Unidade Escolar:</p></td>
+                <td style="width: 100%;border: 1px solid black;
+                border-collapse: collapse;"><textarea style="width: 100%;" name="escola"
+                [(ngModel)]="ordemdeservico.escola.nome"></textarea></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;
+                border-collapse: collapse;"><p>Assunto:</p></td>
+                <td style="width: 100%;border: 1px solid black;"
+                ><textarea style="width: 100%;"
+                name="assunto"[(ngModel)]="ordemdeservico.assunto"></textarea></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;
+                border-collapse: collapse;"><p>Data:</p>
+                </td>
+                <td style="width: 100%;border: 1px solid black;
+                border-collapse: collapse;"><p-calendar name="criacao" dateFormat="dd/mm/yy"
+                    [inline]="false" [readonlyInput]="false"[showIcon]="false"
+                    [(ngModel)]="ordemdeservico.dataCriacao" name="dataCriacao"
+                    #vencimento="ngModel" [required]="true"></p-calendar>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Descrição do problema:</h3>
+        <table style="width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;">
+            <tr>
+                <td style="width: 100%;"><textarea rows="5"
+                    style="height: auto; width: 100%;" name="descricao"
+                    [(ngModel)]="ordemdeservico.descricao"></textarea></td>
+            </tr>
+        </table>
+        <h3>Observações:</h3>
+        <table style="width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;">
+            <tr>
+                <td style="width: 100%;"><textarea rows="5"
+                    style="height: auto; width: 100%;" name="observacao" 
+                    [(ngModel)]="ordemdeservico.observacao"></textarea></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="assinatura" style=" width: 60%;
+    margin: auto;
+    text-align: center;">
+        <br>
+        <br>
+        <br>
+        <b>________________________________________________</b>
+        <h4>Responsavel pela Unidade Escolar</h4>
+        <h4>Assinatura e Carimbo</h4>
+    </div>
+
+</div>

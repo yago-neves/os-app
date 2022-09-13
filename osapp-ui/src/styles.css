@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f8f8f8b7;
+    background-color: #070c0e;
+    font-weight: bold;
+  }
+  a {
+    color: #337ab7;
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  .ui-dropdown-filter-container {
+    width: 100%;
+  }
+  .p-button {
+    margin-right: .25em
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+      margin: 0 auto;
+    }
+  }
+
+  .col-status-header {
+    width: 200px;
+  }
+
+  .col-data {
+    width: 120px;
+    text-align: center;
+  }
+  
+  .col-acoes {
+    width: 90px;
+    text-align: center;
+  }
+
+
+  
+/* Suffix this section at the end of your styles.css for toogling between @media screen and @media print mode */
+/*############################################################################################################*/
+app-print-page {
+  /* hide the printing component from @media screen */
+  display: none;
+}
+
+@media print {
+  /* invert the display (show/hide) properties of the main */
+  /* aplication component and the printing component       */
+
+  app-print-page {
+    display: block;
+  }
+
+  app-main-page {
+    display: none;
+  }
+}
+/*#############################################################################################################*/
+

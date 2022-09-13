@@ -1,0 +1,22 @@
+span {
+    margin-right: 10px;
+}
+span {
+    font-weight: bold;
+    color: rgb(131, 127, 187);
+}
+.col-status {
+    font-weight: bold;
+}
+.col-acoes a, button{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.excluir{
+    background-color: tomato;
+    border-color: tomato;
+}
+.detail {
+    background-color: rgb(56, 56, 247);
+    border-color: rgb(56, 56, 247);
+}

@@ -1,0 +1,37 @@
+<div class="container">
+  <form #escolasForm="ngForm" autocomplete="off" (ngSubmit)="salvar(escolasForm)">
+  
+      <div class="p-col">
+        <div class="p-col-12">
+          <h1>Nova Escola</h1>
+        </div>
+        <div class="p-col-9 p-fluid">
+          <label>Nome da Escola</label>
+          <input pInputText type="text" name="nome"
+          [(ngModel)]="escola.nome" #nome="ngModel" required minlength="5">
+
+        <app-message [control]="nome.control" error="required"
+          text="Informe o nome"></app-message>
+        <app-message [control]="nome.control" error="minlength"
+          text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        </div>
+
+        <div class="p-col-9 p-fluid" style="margin-top: 10px;">
+          <label>Email</label>
+          <input pInputText type="text" name="email"
+          [(ngModel)]="escola.email" #email="ngModel" required minlength="5">
+
+          <app-message [control]="email.control" error="required"
+          text="Informe o Email"></app-message>
+          <app-message [control]="email.control" error="minlength"
+          text="Mínimo de {{ email.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        </div>
+        <div class="p-col-12" style="margin-top: 10px; font-weight: bold;">
+          <button pButton type="submit" label="Salvar" class="p-button-success" style="font-weight: bold;"></button>
+          <a routerLink="/escolas">Voltar para a pesquisa</a>
+        </div>
+      </div>
+  
+    </form>
+  
+  </div>

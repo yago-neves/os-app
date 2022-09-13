@@ -1,0 +1,11 @@
+span {
+    margin-right: 10px;
+}
+span {
+    font-weight: bold;
+    color: rgb(131, 127, 187);
+    width: 100%;
+}
+.col-status {
+    font-weight: bold;
+}

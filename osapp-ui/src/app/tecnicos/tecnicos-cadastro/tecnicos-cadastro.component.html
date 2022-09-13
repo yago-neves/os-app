@@ -1,0 +1,40 @@
+<div class="container">
+    <form #tecnicosForm="ngForm" autocomplete="off" (ngSubmit)="salvar(tecnicosForm)">
+  
+      <div class="p-col">
+        <div class="p-col-12">
+          <h1>Novo Tecnico</h1>
+        </div>
+  
+        <div class="p-col-12 p-fluid">
+          <label>Nome</label>
+          <input pInputText type="text" name="nome"
+            ngModel #nome="ngModel" required minlength="5">
+
+          <app-message [control]="nome.control" error="required"
+            text="Informe o nome"></app-message>
+          <app-message [control]="nome.control" error="minlength"
+            text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        </div>
+  
+        <div class="p-col-12 p-fluid">
+          <label>Email</label>
+          <input pInputText type="text" name="email"
+            ngModel #email="ngModel" required minlength="5">
+
+          <app-message [control]="email.control" error="required"
+            text="Informe o Email"></app-message>
+          <app-message [control]="email.control" error="minlength"
+            text="Mínimo de {{ email.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        </div>
+
+        <div class="p-col-12">
+          <button pButton type="submit" label="Salvar" [disabled]="tecnicosForm.invalid"></button>  
+          <a routerLink="/tecnicos">Voltar para a pesquisa</a>
+        </div>
+
+      </div>
+  
+    </form>
+  
+  </div>
